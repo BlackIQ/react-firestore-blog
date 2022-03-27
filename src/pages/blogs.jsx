@@ -10,10 +10,12 @@ const Blogs = () => {
     useEffect(() => {
         const get = async () => {
             const data = await getBlogs();
-            setBlogs(data.docs.map(doc => ({...doc.data()})));
+            setBlogs(data.docs.map(doc => ({...doc.data(), id: doc.id})));
         }
         get();
     }, [])
+
+    console.log(blogs);
 
     return (
         blogs.map(blog => {
