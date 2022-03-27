@@ -15,8 +15,6 @@ const Blogs = () => {
         get();
     }, [])
 
-    console.log(blogs);
-
     return (
         blogs.map(blog => {
             return <BlogItem blog={blog}/>
