@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./components/navbar";
 import Home from "./pages/home";
 import Blogs from "./pages/blogs";
-import BlogPage from "./components/blogpage";
+import BlogPage from "./components/blogPage";
 import New from "./pages/new";
 
 function App() {
