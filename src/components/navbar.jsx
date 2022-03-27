@@ -14,7 +14,7 @@ const Navbar = () => {
         if (loading) return null;
 
         if (user) setNavItem(<span className='text-primary pointer' onClick={() => logout()}>Logout</span>);
-        else setNavItem(<span className='text-primary pointer' onClick={() => loginGoogle()}>Login with Google</span>);
+        else setNavItem(<Link className='text-primary pointer' to='/auth'>Login</Link>);
     }, [user, loading])
 
     return (

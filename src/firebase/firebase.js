@@ -1,10 +1,10 @@
 import {initializeApp} from "firebase/app";
 
 import {
-    GoogleAuthProvider,
     getAuth,
-    signInWithPopup,
     signOut,
+    signInWithEmailAndPassword,
+    createUserWithEmailAndPassword,
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -19,11 +19,19 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
-const googleProvider = new GoogleAuthProvider();
 
-const loginGoogle = async () => {
+const login = async (email, password) => {
     try {
-        await signInWithPopup(auth, googleProvider);
+        await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+        console.error(error);
+        alert(error.message);
+    }
+}
+
+const register = async (email, password) => {
+    try {
+        await createUserWithEmailAndPassword(auth, email, password);
     } catch (error) {
         console.error(error);
         alert(error.message);
@@ -36,6 +44,7 @@ const logout = () => {
 
 export {
     auth,
-    loginGoogle,
+    login,
     logout,
+    register,
 }
