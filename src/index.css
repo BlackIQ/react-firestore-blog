@@ -3,3 +3,7 @@
 body {
   font-family: 'Overlock', cursive !important;
 }
+
+.pointer {
+  cursor: pointer;
+}
