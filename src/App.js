@@ -1,6 +1,9 @@
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
 import Navbar from "./components/navbar";
 import Home from "./pages/home";
+import Blogs from "./pages/blogs";
+import BlogPage from "./components/blogpage";
+import New from "./pages/new";
 
 function App() {
     return (
@@ -9,6 +12,9 @@ function App() {
             <div className='container py-4'>
                 <Switch>
                     <Route exact path='/'>Index</Route>
+                    <Route exact path='/blogs'><Blogs/></Route>
+                    <Route exact path='/new'><New/></Route>
+                    <Route path='/blog/:id'><BlogPage/></Route>
                     <Route exact path='/home'><Home /></Route>
                 </Switch>
             </div>
