@@ -1,8 +1,7 @@
-import {useState, useEffect} from "react";
+import {useEffect} from "react";
 import {auth} from "../firebase/firebase";
 import {useAuthState} from "react-firebase-hooks/auth";
-import {Link, useHistory} from "react-router-dom";
-import {FaReact, FaServer} from "react-icons/fa";
+import {useHistory} from "react-router-dom";
 
 const Home = () => {
 
