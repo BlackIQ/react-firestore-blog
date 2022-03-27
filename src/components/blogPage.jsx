@@ -17,7 +17,9 @@ const BlogPage = () => {
 
     return (
         <div>
-            <h3>{blog[0].title}</h3>
+            <h1>{blog[0].title}</h1>
+            <br/>
+            <p>{blog[0].text}</p>
         </div>
     );
 }

@@ -7,7 +7,8 @@ import {
     where,
     query,
     orderBy,
-    onSnapshot
+    deleteDoc,
+    updateDoc,
 } from "firebase/firestore";
 
 const firebaseConfig = {
@@ -29,7 +30,7 @@ const getBlogs = async () => {
 }
 
 const getBlog = async (id) => {
-    const blog = query(reference, where('id', '==', id));
+    const blog = query(reference, where('id', '==', id), orderBy('id', 'desc'));
     return await getDocs(blog);
 }
 
