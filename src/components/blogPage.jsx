@@ -2,7 +2,7 @@ import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
 import {getBlog} from "../firebase/firestore";
 
-const Blogpage = () => {
+const BlogPage = () => {
     const {id} = useParams();
 
     const [blog, setBlog] = useState([]);
@@ -10,17 +10,16 @@ const Blogpage = () => {
     useEffect(() => {
         const get = async () => {
             const data = await getBlog(id);
-            // setBlog(data);
-            console.log(data);
+            setBlog(data.docs.map(doc => ({...doc.data()})));
         }
         get();
     }, [])
 
     return (
         <div>
-            <h3>{blog.title}</h3>
+            <h3>{blog[0].title}</h3>
         </div>
     );
 }
 
-export default Blogpage;
+export default BlogPage;
