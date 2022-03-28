@@ -1,14 +1,14 @@
 import {BrowserRouter as Router, Route, Switch} from "react-router-dom";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {newBlog} from "./firebase/firestore";
+import BlogPage from "./components/blogPage";
 import Navbar from "./components/navbar";
+import {auth} from "./firebase/firebase";
+import Blogs from "./pages/blogs";
 import Home from "./pages/home";
 import Auth from "./pages/auth";
-import Blogs from "./pages/blogs";
-import BlogPage from "./components/blogPage";
+import {useState} from "react";
 import New from "./pages/new";
-import {useEffect, useState} from "react";
-import {newBlog} from "./firebase/firestore";
-import {useAuthState} from "react-firebase-hooks/auth";
-import {auth} from "./firebase/firebase";
 
 
 function docIdGenerator(length) {
