@@ -2,7 +2,8 @@ import {initializeApp} from "firebase/app";
 
 import {
     addDoc,
-    collection, getDocs,
+    collection,
+    getDocs,
     getFirestore,
     where,
     query,
@@ -40,4 +41,5 @@ export {
     getBlogs,
     getBlog,
     newBlog,
+    reference,
 }
