@@ -1,30 +1,34 @@
 import {useParams} from "react-router-dom";
 import {useEffect, useState} from "react";
-import {getBlogs} from "../firebase/firestore";
+import {reference as blogRef} from "../firebase/firestore";
+import {getDocs, query, where} from "firebase/firestore";
 
 const BlogPage = () => {
-    const {id} = useParams();
+    const {identifier} = useParams();
 
 
     const [blog, setBlog] = useState([]);
 
     useEffect(() => {
         const get = async () => {
-            const data = await getBlogs(id);
-            console.log(data)
-            setBlog(data.docs.map(doc => ({...doc.data()})));
+            const q = query(blogRef, where('identifier', '==', identifier));
+            const doc = await getDocs(q);
+            const data = doc.docs[0].data();
+            setBlog(data);
         }
         get();
-    }, [id])
+    }, [identifier])
 
     return (
-        blog ?
+        blog.length === 0
+            ?
+            <p>Loading . . .</p>
+            :
             <div>
                 <h1>{blog.title}</h1>
                 <br/>
                 <p>{blog.text}</p>
             </div>
-            : <p>Loading . . .</p>
     );
 }
 
