@@ -15,7 +15,8 @@ const Navbar = () => {
 
         if (user) setNavItem(
             <div>
-                <Link className="text-warning me-3" to="/new">New</Link>
+                <span className="text-warning me-3 pointer" data-mdb-toggle="modal" data-mdb-target="#newblog">New</span>
+                <Link className="text-warning me-3" to="/home">Profile</Link>
                 <Link className="text-warning me-3" onClick={() => logout()}>Logout</Link>
             </div>
         );
