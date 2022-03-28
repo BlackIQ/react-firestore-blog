@@ -49,4 +49,25 @@ There are just 2 collections.
 ![Blog collection](public/images/rfs-db-1.png)
 
 - Users
-  ![User collection](public/images/rfs-db-2.png)
+![User collection](public/images/rfs-db-2.png)
+
+## How to run
+
+1. Clone it and go to the app dir
+
+```shell
+$ git clone https://github.com/BlackIQ/react-firestore-blog
+$ cd react-firestore-blog
+```
+
+2. Then enter `npm` installing deps command 
+
+```shell
+$ npm i
+```
+
+3. Last, run it
+
+```shell
+$ npm start
+```
