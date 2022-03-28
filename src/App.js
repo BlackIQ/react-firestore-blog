@@ -60,18 +60,19 @@ function App() {
             <div className='modal fade' id='newblog' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div className='modal-dialog'>
                     <div className='modal-content'>
-                        <div className='modal-header'>
-                            <h5 className="modal-title" id="exampleModalLabel">New blog</h5>
-                            <button type="button" className="btn-close" data-mdb-dismiss="modal" aria-label="Close"/>
-                        </div>
-                        <div className='modal-body'>
-                            <form onSubmit={submit}>
+                        <form onSubmit={submit}>
+                            <div className='modal-header'>
+                                <h5 className="modal-title" id="exampleModalLabel">New blog</h5>
+                                <button type="button" className="btn-close" data-mdb-dismiss="modal" aria-label="Close"/>
+                            </div>
+                            <div className='modal-body'>
                                 <label className='form-label' htmlFor='title'>Blog title</label>
                                 <input id='title' className='form-control' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)}/>
                                 <br/>
                                 <label className='form-label' htmlFor='text'>Blog text</label>
                                 <textarea id='text' className='form-control' placeholder='Text' value={text} rows='10' onChange={(e) => setText(e.target.value)}/>
-                                <br/>
+                            </div>
+                            <div className='modal-footer'>
                                 {
                                     title
                                         ?
@@ -83,11 +84,8 @@ function App() {
                                         :
                                         <button className='btn btn-info' type='submit' disabled>Enter valid data</button>
                                 }
-                            </form>
-                        </div>
-                        <div className='modal-footer'>
-                            Ok
-                        </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
