@@ -9,6 +9,7 @@ import Home from "./pages/home";
 import Auth from "./pages/auth";
 import {useState} from "react";
 import New from "./pages/new";
+import Index from "./pages";
 
 
 function docIdGenerator(length) {
@@ -49,7 +50,7 @@ function App() {
             <Navbar />
             <div className='container py-4'>
                 <Switch>
-                    <Route exact path='/'>Index</Route>
+                    <Route exact path='/'><Index/></Route>
                     <Route exact path='/blogs'><Blogs/></Route>
                     <Route exact path='/new'><New/></Route>
                     <Route path='/blog/:identifier'><BlogPage/></Route>
