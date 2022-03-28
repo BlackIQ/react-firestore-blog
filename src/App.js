@@ -15,7 +15,7 @@ function App() {
                     <Route exact path='/'>Index</Route>
                     <Route exact path='/blogs'><Blogs/></Route>
                     <Route exact path='/new'><New/></Route>
-                    <Route path='/blog/:id'><BlogPage/></Route>
+                    <Route path='/blog/:identifier'><BlogPage/></Route>
                     <Route exact path='/auth'><Auth /></Route>
                     <Route exact path='/home'><Home /></Route>
                 </Switch>
