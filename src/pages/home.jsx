@@ -17,7 +17,7 @@ const Home = () => {
 
     const fetchUserData = async () => {
         try {
-            const q = query(userRef, where('user', '==', user.uid));
+            const q = query(userRef, where('user', '==', user?.uid));
             const doc = await getDocs(q);
             const data = doc.docs[0].data();
             setUserData(data);
@@ -41,9 +41,12 @@ const Home = () => {
 
     useEffect(() => {
         if (loading) return null;
-        if (!user) history.push('/');
-        fetchUserData();
-        fetchUserBlogs();
+        if (user) {
+            fetchUserData();
+            fetchUserBlogs();
+        } else {
+            history.push('/');
+        }
     }, [user, loading]);
 
     if (!user) return null;
