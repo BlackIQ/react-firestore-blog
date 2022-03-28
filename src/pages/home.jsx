@@ -57,7 +57,7 @@ const Home = () => {
             {
                 userBlogs.length === 0
                     ?
-                    <p>Loading . . .</p>
+                    <p>Trying to get you blogs . . .</p>
                     :
                     userBlogs.map(blog => {
                         return <BlogItem blog={blog}/>
