@@ -52,23 +52,17 @@ const Home = () => {
         <div>
             <h1>Welcome {userData.name}!</h1>
             <hr/>
-            <div className='row'>
-                <div className='col-md-6'>
-                    <div className='m-1 card-body shadow-6-soft'>
-                        <h4 className='text-warning'>You blogs</h4>
-                        <br/>
-                        {
-                            userBlogs.length === 0
-                                ?
-                                <p>Loading . . .</p>
-                                :
-                                userBlogs.map(blog => {
-                                    return <BlogItem blog={blog}/>
-                                })
-                        }
-                    </div>
-                </div>
-            </div>
+            <h4 className='text-warning'>You blogs</h4>
+            <br/>
+            {
+                userBlogs.length === 0
+                    ?
+                    <p>Loading . . .</p>
+                    :
+                    userBlogs.map(blog => {
+                        return <BlogItem blog={blog}/>
+                    })
+            }
         </div>
     );
 }

@@ -5,7 +5,7 @@ const BlogItem = props => {
 
     return (
         <div>
-            <div className='border border-warning rounded-4'>
+            <div className='border border-warning rounded-4 shadow-5'>
                 <div className='m-3'>
                     <h4 className='text-warning'><Link to={'/blog/' + blog.identifier}>{blog.title}</Link></h4>
                     <p>{blog.text}</p>
