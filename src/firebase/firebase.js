@@ -7,6 +7,13 @@ import {
     createUserWithEmailAndPassword,
 } from "firebase/auth";
 
+import {
+    addDoc,
+    collection,
+    getDocs,
+    getFirestore,
+} from "firebase/firestore";
+
 const firebaseConfig = {
     apiKey: "AIzaSyBMZYgUUmKi907mAJ4Z1vRjFYOh0twtG_8",
     authDomain: "reactjs-firestore-1.firebaseapp.com",
@@ -20,6 +27,9 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 
+const db = getFirestore(app);
+const reference = collection(db, 'users');
+
 const login = async (email, password) => {
     try {
         await signInWithEmailAndPassword(auth, email, password);
@@ -29,9 +39,15 @@ const login = async (email, password) => {
     }
 }
 
-const register = async (email, password) => {
+const register = async (name, email, password) => {
     try {
-        await createUserWithEmailAndPassword(auth, email, password);
+        const response = await createUserWithEmailAndPassword(auth, email, password);
+        const user = response.user;
+        const userObject = {
+            'name': name,
+            'user': user.uid,
+        };
+        await addDoc(reference, userObject);
     } catch (error) {
         console.error(error);
         alert(error.message);
@@ -47,4 +63,5 @@ export {
     login,
     logout,
     register,
+    reference,
 }
