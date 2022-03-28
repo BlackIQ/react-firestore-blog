@@ -5,8 +5,45 @@ import Auth from "./pages/auth";
 import Blogs from "./pages/blogs";
 import BlogPage from "./components/blogPage";
 import New from "./pages/new";
+import {useEffect, useState} from "react";
+import {newBlog} from "./firebase/firestore";
+import {useAuthState} from "react-firebase-hooks/auth";
+import {auth} from "./firebase/firebase";
+
+
+function docIdGenerator(length) {
+    let result = '';
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    const charactersLength = characters.length;
+    for (var i = 0; i < length; i++) {
+        result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+}
 
 function App() {
+
+    const [user, loading, error] = useAuthState(auth);
+
+    const [title, setTitle] = useState('');
+    const [text, setText] = useState('');
+
+    const submit = e => {
+        e.preventDefault();
+
+        const data = {
+            'identifier': docIdGenerator(10),
+            'user': user.uid,
+            'title': title,
+            'text': text,
+        };
+
+        newBlog(data).then(() => {});
+
+        setTitle('');
+        setText('');
+    }
+
     return (
         <Router>
             <Navbar />
@@ -19,6 +56,40 @@ function App() {
                     <Route exact path='/auth'><Auth /></Route>
                     <Route exact path='/home'><Home /></Route>
                 </Switch>
+            </div>
+            <div className='modal fade' id='newblog' tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div className='modal-dialog'>
+                    <div className='modal-content'>
+                        <div className='modal-header'>
+                            <h5 className="modal-title" id="exampleModalLabel">New blog</h5>
+                            <button type="button" className="btn-close" data-mdb-dismiss="modal" aria-label="Close"/>
+                        </div>
+                        <div className='modal-body'>
+                            <form onSubmit={submit}>
+                                <label className='form-label' htmlFor='title'>Blog title</label>
+                                <input id='title' className='form-control' placeholder='Title' value={title} onChange={(e) => setTitle(e.target.value)}/>
+                                <br/>
+                                <label className='form-label' htmlFor='text'>Blog text</label>
+                                <textarea id='text' className='form-control' placeholder='Text' value={text} rows='10' onChange={(e) => setText(e.target.value)}/>
+                                <br/>
+                                {
+                                    title
+                                        ?
+                                        text
+                                            ?
+                                            <button className='btn btn-info' type='submit'>Post it</button>
+                                            :
+                                            <button className='btn btn-info' type='submit' disabled>Enter valid data</button>
+                                        :
+                                        <button className='btn btn-info' type='submit' disabled>Enter valid data</button>
+                                }
+                            </form>
+                        </div>
+                        <div className='modal-footer'>
+                            Ok
+                        </div>
+                    </div>
+                </div>
             </div>
         </Router>
     );
