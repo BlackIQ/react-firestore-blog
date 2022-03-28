@@ -39,7 +39,7 @@ const Auth = () => {
                         <label className='form-label' htmlFor='password'>Password</label>
                         <input className='form-control' type='password' placeholder='Password' id='password' onChange={e => setRegisterPassword(e.target.value)}/>
                         <br/>
-                        <button onClick={() => register(registerEmail, registerPassword)} className='btn btn-warning w-100'>Create my account</button>
+                        <button onClick={() => register(registerName, registerEmail, registerPassword)} className='btn btn-warning w-100'>Create my account</button>
                     </div>
                 </div>
                 <div className='col-md-6'>
